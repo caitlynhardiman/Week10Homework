@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "width": 600,
+  "height": 600,
+  "title": "International Visitors to Australia December '09 to December '19",
+  "data": {
+    "url": "https://raw.githubusercontent.com/caitlynhardiman/Week10Homework/main/Week10Hw.csv"
+  },
+  "encoding": {
+    "x": {
+      "field": "Visitors",
+      "type": "quantitative",
+      "title": "Number of Visitors"
+    },
+    "y": {
+      "field": "Average_Stay",
+      "type": "quantitative",
+      "title": "Average Length of Stay in days"
+    }
+  },
+  "layer": [
+    {
+      "selection": {
+        "continent_highlight": {
+          "type": "multi",
+          "fields": ["Continent"],
+          "bind": "legend"
+        }
+      },
+      "mark": "circle",
+      "encoding": {
+        "size": {"value": 200},
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": ["North America", "Europe", "Oceania", "Asia", "Other"],
+            "range": ["#e41a1c", "#984ea3", "#ff7f00", "#2b8cbe", "#fed976"]
+          }
+        },
+        "opacity": {
+          "condition": {"selection": "continent_highlight", "value": 0.6},
+          "value": 0.2
+        },
+        "tooltip": [
+          {"field": "Country/Region", "type": "nominal"},
+          {
+            "field": "Visitors",
+            "type": "quantitative",
+            "title": "Number of visitors",
+            "format": ","
+          },
+          {
+            "field": "Average_Stay",
+            "type": "quantitative",
+            "title": "Average length of trip"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "baseline": "middle",
+        "dx": -12,
+        "fontSize": 11.5,
+        "fontStyle": "italic"
+      },
+      "encoding": {
+        "text": {"field": "Country/Region", "type": "nominal"},
+        "color": {"value": "black"},
+        "opacity": {
+          "condition": {
+            "test": "datum['Country/Region'] == 'China' || datum['Country/Region'] == 'Singapore' || datum['Country/Region'] == 'New Zealand' ||  datum['Country/Region'] == 'United States of America'",
+            "value": 1
+          },
+          "value": 0
+        },
+        "tooltip": [
+          {"field": "Country/Region", "type": "nominal"},
+          {
+            "field": "Visitors",
+            "type": "quantitative",
+            "title": "Number of visitors",
+            "format": ","
+          },
+          {
+            "field": "Average_Stay",
+            "type": "quantitative",
+            "title": "Average length of trip",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ],
+  "config": {}
+}
