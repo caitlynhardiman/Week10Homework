@@ -4,7 +4,7 @@
   "height": 600,
   "title": "International Visitors to Australia December '09 to December '19",
   "data": {
-    "url": "https://raw.githubusercontent.com/caitlynhardiman/Week10Homework/main/Week10Hw.csv"
+    "url": "https://raw.githubusercontent.com/caitlynhardiman/Week10Homework/main/data/Week10Hw.csv"
   },
   "encoding": {
     "x": {
